@@ -1,6 +1,7 @@
 from fastapi.testclient import TestClient
-from sqlmodel import Session
-from password_manager.main import Passwords
+# from sqlmodel import Session
+from passlib.hash import cisco_type7 as ct7
+# from password_manager.main import Passwords
 
 
 def test_create_password(client: TestClient):
@@ -11,5 +12,5 @@ def test_create_password(client: TestClient):
     data = response.json()
 
     assert response.status_code == 200
-    assert data["password"] == "secret_word"
+    assert ct7.verify("secret_word", data["password"])
     assert data["service_name"] == "yandex"
