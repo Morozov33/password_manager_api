@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from sqlmodel import Session, create_engine
+from sqlmodel import SQLModel, Session, create_engine
 
 
 def get_database_url():
@@ -14,7 +14,7 @@ def get_database_url():
     load_dotenv(dotenv_path=env_path)
 
     # Get database url
-    database_url = os.getenv("POSTGRES_DB_URL")
+    database_url = os.getenv("DATABASE_URL")
     return database_url
 
 
@@ -22,9 +22,12 @@ def get_database_url():
 engine = create_engine(get_database_url(), echo=True)
 
 
+def create_tables():
+    SQLModel.metadata.create_all(engine)
+
+
 def get_session():
 
     # Return generator for database connection
     with Session(engine) as session:
         yield session
-
