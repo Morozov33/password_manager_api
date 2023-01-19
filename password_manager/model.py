@@ -5,8 +5,8 @@ from sqlmodel import SQLModel, Field
 class PasswordsBase(SQLModel):
 
     # Base model for password
-    password: str
     service_name: str = Field(default=None, index=True)
+    password: str
 
 
 class Passwords(PasswordsBase, table=True):
@@ -16,8 +16,8 @@ class Passwords(PasswordsBase, table=True):
 
 
 class PasswordRead(PasswordsBase):
-    password: str
     service_name: str
+    password: str
 
 
 class PasswordCreateUpdate(PasswordsBase):
