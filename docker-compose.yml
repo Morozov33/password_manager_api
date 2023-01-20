@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  password_app:
+    container_name: password_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: >
+      sh -c "uvicorn password_manager.main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    networks:
+      - web_network
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@db_postgres:5432/password_db
+    depends_on:
+      db_postgres:
+        condition: service_healthy
+
+
+  db_postgres:
+    container_name: db_postgres
+    image: postgres:13.9-alpine
+    expose:
+      - 5432
+    networks:
+      - web_network
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=password_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 10s
+      retries: 100
+
+
+networks:
+  web_network:
+    name: web_network

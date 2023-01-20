@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  tests_password_app:
+    container_name: tests_password_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://postgres:postgres@password_app:5432/password_db
+    command: pytest -vv
+    networks:
+      - test_network
+
+networks:
+  test_network:
+    external:
+      name: web_network
