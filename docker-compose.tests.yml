@@ -13,7 +13,8 @@ services:
     networks:
       - test_network
 
+
 networks:
   test_network:
-    external:
-      name: web_network
+    name: web_network
+    external: true

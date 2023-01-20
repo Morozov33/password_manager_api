@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from sqlmodel import Session, select
 from typing import List
 from sqlalchemy.orm.exc import NoResultFound
-from password_manager.database import get_session, create_tables
+from password_manager.database import get_session
 from password_manager.hash import get_hash, get_password
 from password_manager.model import (Passwords, PasswordRead,
                                     PasswordCreateUpdate)
@@ -11,24 +11,10 @@ from password_manager.model import (Passwords, PasswordRead,
 app = FastAPI()
 
 
-@app.on_event("startup")
-def on_startup():
-    create_tables()
-
-
-@app.on_event("shutdown")
-def on_shutdown():
-    pass
-    # Clear DB when app is shutdown
-    # with Session(engine) as session:
-    #     session.exec(delete(Passwords))
-    #     session.commit()
-
-
 @app.get("/")
 def root():
 
-    # Welcome message from root
+    # Welcome message for root
     return {
         "message": (
             """Hello, everyone!\

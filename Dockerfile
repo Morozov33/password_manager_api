@@ -26,3 +26,5 @@ RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 # add app
 COPY ./password_manager /app/password_manager
 COPY ./tests /app/tests
+COPY ./migrations /app/migrations
+COPY ./alembic.ini /app/alembic.ini
