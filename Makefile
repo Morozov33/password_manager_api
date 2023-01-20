@@ -7,6 +7,9 @@ start: # Start Docker containers: app and db
 stop: # Stop Docker containers
 	docker compose stop password_app db_postgres
 
+result: # Show tests result
+	docker logs test_password_app
+
 localstart: # Use last migration and local start uvicorn server for app
 	export DATABASE_URL=postgresql+psycopg2://postgres@localhost/passwords_db && poetry run alembic upgrade head && poetry run uvicorn password_manager.main:app --reload
 
