@@ -118,7 +118,7 @@ files = [
 name = "coverage"
 version = "7.0.5"
 description = "Code coverage measurement for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -222,7 +222,7 @@ test = ["anyio[trio] (>=3.2.1,<4.0.0)", "black (==22.10.0)", "coverage[toml] (>=
 name = "flake8"
 version = "6.0.0"
 description = "the modular source code checker: pep8 pyflakes and co"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.8.1"
 files = [
@@ -395,7 +395,7 @@ files = [
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -537,7 +537,7 @@ files = [
 name = "pycodestyle"
 version = "2.10.0"
 description = "Python style guide checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -602,7 +602,7 @@ email = ["email-validator (>=1.0.3)"]
 name = "pyflakes"
 version = "3.0.1"
 description = "passive checker of Python programs"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -638,7 +638,7 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.
 name = "pytest-cov"
 version = "4.0.0"
 description = "Pytest plugin for measuring coverage."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -652,21 +652,6 @@ pytest = ">=4.6"
 
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
-
-[[package]]
-name = "python-dotenv"
-version = "0.21.0"
-description = "Read key-value pairs from a .env file and set them as environment variables"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "python-dotenv-0.21.0.tar.gz", hash = "sha256:b77d08274639e3d34145dfa6c7008e66df0f04b7be7a75fd0d5292c191d79045"},
-    {file = "python_dotenv-0.21.0-py3-none-any.whl", hash = "sha256:1684eb44636dd462b66c3ee016599815514527ad99965de77f43e0944634a7e5"},
-]
-
-[package.extras]
-cli = ["click (>=5.0)"]
 
 [[package]]
 name = "rfc3986"
@@ -775,14 +760,14 @@ sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
 name = "sqlalchemy2-stubs"
-version = "0.0.2a31"
+version = "0.0.2a32"
 description = "Typing Stubs for SQLAlchemy 1.4"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "sqlalchemy2-stubs-0.0.2a31.tar.gz", hash = "sha256:18e70515eec96c48825f3e1da0c60b04e155593213e25eb28c4cee994a315e4d"},
-    {file = "sqlalchemy2_stubs-0.0.2a31-py3-none-any.whl", hash = "sha256:515a97fbe4b7cd299b43166c51ce6f356f1222128bf2ba57b0619ce8d89dfab4"},
+    {file = "sqlalchemy2-stubs-0.0.2a32.tar.gz", hash = "sha256:2a2cfab71d35ac63bf21ad841d8610cd93a3bd4c6562848c538fa975585c2739"},
+    {file = "sqlalchemy2_stubs-0.0.2a32-py3-none-any.whl", hash = "sha256:7f5fb30b0cf7c6b74c50c1d94df77ff32007afee8d80499752eb3fedffdbdfb8"},
 ]
 
 [package.dependencies]
@@ -869,4 +854,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "057a33dc67e5087bddfe50f97b5ec89287b6a494b70bb9d941bf29c8cfd4a855"
+content-hash = "241ff1110a7b6de1c5da6a57c67d7794181df6f7b786cf29950ca6d25e4ca7a6"
