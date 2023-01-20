@@ -8,17 +8,13 @@ stop: # Stop Docker containers
 	docker compose stop password_app db_postgres
 
 localstart: # Use last migration and local start uvicorn server for app
-	# for local start it needs DATABASE_URL, for example, uncomment next line:
-	# export DATABASE_URL=postgresql+psycopg2://postgres@localhost/<database_name>
-	poetry run alembic upgrade head
-	poetry run uvicorn password_manager.main:app --reload
+	export DATABASE_URL=postgresql+psycopg2://postgres@localhost/passwords_db && poetry run alembic upgrade head && poetry run uvicorn password_manager.main:app --reload
 
 lint: #linter for code
 	poetry run flake8 password_manager tests
 
 migrate: #make local migrations by Alembic
-	# for local start it needs DATABASE_URL, for example, uncomment next line:
-	# export DATABASE_URL=postgresql+psycopg2://postgres@localhost/<database_name>
+	export DATABASE_URL=postgresql+psycopg2://postgres@localhost/<database_name> &&
 	poetry run alembic revision --autogenerate -m "New migrate"
 
 test: #local start pytest
