@@ -13,7 +13,8 @@
 ----
 Простой менеджер паролей. Пароли хранятся в БД Postgres, зашифрованные с помошью алгоритма Cisco “Type 7” (не является полноценным хешем, т.к. возможно обратное декодирование, используется в демонстрационных целях). Доступны все CRUD операции:
 1. Создание или обновление пары "пароль-сервис":
-    ``` POST /password/google
+    ```
+        POST /password/google
         content-type: application/json
         {
             "password": "secret_word_for_google"
@@ -23,7 +24,8 @@
     ```
     P.S. Так же можно было бы разделить операции создания и обновления на два метода `POST` и `PATCH`, используя два роута, и изолировать эти функции друг от друга.
 2. Запрос пароля по имени сервиса:
-    ``` GET /password/google
+    ```
+        GET /password/google
 
         HTTP/1.1 200 OK
         content-type: application/json
@@ -33,7 +35,8 @@
         }
     ```
 3. Удаление пары "пароль-сервис" (добавлено опционально, для полноты CRUD-операций):
-    ``` DELETE /password/google
+    ```
+        DELETE /password/google
 
         HTTP/1.1 200 OK
         content-type: application/json
@@ -42,7 +45,8 @@
         }
     ```
 4. Поиск по части имени сервиса. Поиск регистронезависимый, результат - список. Запрос с параметром `?service_name=` приведет к ошибке `400`:
-    ``` GET /password/?service_name=go
+    ```
+        GET /password/?service_name=go
 
         HTTP/1.1 200 OK
         content-type: application/json
