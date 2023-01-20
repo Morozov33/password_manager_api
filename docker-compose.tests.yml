@@ -12,6 +12,9 @@ services:
     command: pytest -vv
     networks:
       - test_network
+    depends_on:
+      db_postgres:
+        condition: service_healthy
 
 
 networks:
