@@ -15,6 +15,7 @@ psycopg2-binary = "^2.9.5"
 pytest = "^7.2.1"
 httpx = "^0.23.3"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+alembic = "^1.9.2"
 
 
 [tool.poetry.group.dev.dependencies]
