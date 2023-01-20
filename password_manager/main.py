@@ -30,7 +30,7 @@ def read_password(
         service_name: str,
 ):
     try:
-        password_db = session.exec(
+        db_password = session.exec(
                 select(Passwords).where(Passwords.service_name == service_name)
         ).one()
     except NoResultFound:
@@ -39,8 +39,8 @@ def read_password(
                 detail="Password not found",
         )
     else:
-        password_db.password = get_password(password_db.password)
-        return password_db
+        db_password.password = get_password(db_password.password)
+        return db_password
 
 
 @app.get("/password", response_model=List[PasswordRead])
@@ -54,7 +54,7 @@ def read_part_of_service_name(
                 status_code=400,
                 detail="Invalid value for service_name",
         )
-    password_db = session.exec(
+    db_password = session.exec(
             select(Passwords).where(
                 Passwords.service_name.ilike(
                     f"%{service_name}%"
@@ -62,14 +62,15 @@ def read_part_of_service_name(
             )
     ).all()
 
-    if not password_db:
+    if not db_password:
         raise HTTPException(
                 status_code=404,
                 detail="Services not found",
         )
-    for item in password_db:
+    for item in db_password:
         item.password = get_password(item.password)
-    return password_db
+
+    return db_password
 
 
 @app.post("/password/{service_name}", response_model=PasswordRead)
@@ -87,7 +88,6 @@ def create_update_password(
     if not db_password:
         db_password = Passwords.from_orm(password_model)
         db_password.service_name = service_name
-        db_password_return = db_password
         db_password.password = get_hash(db_password.password)
         session.add(db_password)
         session.commit()
@@ -98,13 +98,13 @@ def create_update_password(
 
         for key, value in password_data.items():
             setattr(db_password, key, value)
-        db_password_return = db_password
         db_password.password = get_hash(db_password.password)
         session.add(db_password)
         session.commit()
         session.refresh(db_password)
 
-    return db_password_return
+    db_password.password = get_password(db_password.password)
+    return db_password
 
 
 @app.delete("/password/{service_name}")

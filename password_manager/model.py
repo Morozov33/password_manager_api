@@ -25,6 +25,4 @@ class PasswordRead(PasswordsBase):
 class PasswordCreateUpdate(PasswordsBase):
 
     # Shema for creating and updating password and service
-    id: Optional[int] = None
-    password: Optional[str] = None
-    service_name: Optional[str] = None
+    password: str

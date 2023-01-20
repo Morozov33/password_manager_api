@@ -1,13 +1,9 @@
 import os
-from sqlmodel import SQLModel, Session, create_engine
+from sqlmodel import Session, create_engine
 
 
 # Create engine for DB
 engine = create_engine(os.getenv("DATABASE_URL"), echo=True)
-
-
-def create_tables():
-    SQLModel.metadata.create_all(engine)
 
 
 def get_session():
